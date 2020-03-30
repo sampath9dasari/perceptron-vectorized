@@ -3,12 +3,20 @@ import numpy as np
 
 class perceptron():
 
-    def __init__(self):
+    def __init__(self, epoch_threshold=100, l_rate=1, batch_size=1):
+        self.weights = np.ones(4)
+        self.epoch_threshold = epoch_threshold
+        self.l_rate = l_rate
+        self.batch_size = batch_size
+        self.axis = 0
         pass
 
 
     ### Function to make batches, given an numpy array, batch size and the axis for splitting
-    def make_batches(self, data, batch_size, axis):
+    def make_batches(self, data, axis, batch_size = None):
+        if batch_size == None :
+            batch_size = self.batch_size
+
         num_batches = data.shape[axis] // batch_size
         residue = data.shape[0] % batch_size
         batches = np.split(data[:data.shape[axis] - residue], num_batches)
@@ -25,8 +33,8 @@ class perceptron():
     ### Function to train the perceptron model and update the weights
     def train_perceptron(self, train, labels, weights, l_rate=1, batch_size=1, epoch_threshold=100):
         epoch = 0
-        train_batches = make_batches(train, batch_size, 0)
-        label_batches = make_batches(labels, batch_size, 0)
+        train_batches = self.make_batches(train, batch_size, 0)
+        label_batches = self.make_batches(labels, batch_size, 0)
         print("Number of batches formed: ", len(train_batches))
         print()
         while (True):
