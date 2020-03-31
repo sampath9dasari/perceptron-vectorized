@@ -21,7 +21,7 @@ class Perceptron:
         pass
 
 
-    def compute(self, x, weights):
+    def compute(self, x, weights=None):
         """
         Fully vectorized function to compute the product between weights, feature vector and true label
         """
