@@ -56,7 +56,9 @@ class Perceptron:
         if batch_size is None: batch_size = self.batch_size
         if epoch_threshold is None: epoch_threshold = self.epoch_threshold
 
-        train_batches = make_batches(train, batch_size, 0)
+        train_d = np.concatenate([train, np.ones(len(train)).reshape(len(train), 1)], axis=1)
+
+        train_batches = make_batches(train_d, batch_size, 0)
         label_batches = make_batches(labels, batch_size, 0)
 
         print("Number of batches formed: ", len(train_batches))
@@ -94,7 +96,9 @@ class Perceptron:
         :return: Array of output labels on the input data
         """
 
-        labels = self.compute(test)
+        test_d = np.concatenate([test, np.ones(len(test)).reshape(len(test), 1)], axis=1)
+
+        labels = self.compute(test_d)
         pred_labels = np.where(labels < 0, -1, 1)
 
         return pred_labels
