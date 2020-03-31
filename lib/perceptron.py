@@ -4,6 +4,15 @@ from lib.perceptron_helper import *
 class Perceptron:
 
     def __init__(self, dim=1, epoch_threshold=100, l_rate=1, batch_size=1):
+        """
+        Perceptron class object initialization.
+
+        :param dim: Number of dimensions for the input
+        :param epoch_threshold: Maximum number of epochs to run
+        :param l_rate: Learning rate to be set
+        :param batch_size: Batch size for training
+        """
+
         self.dim = dim
         self.weights = np.random.uniform(size=dim + 1)
         self.epoch_threshold = epoch_threshold
@@ -29,12 +38,12 @@ class Perceptron:
 
         :param train: Array of input to train the model on
         :param labels: Array of output labels for loss computation
-        :param init_weights: a
-        :param l_rate: b
-        :param batch_size: c
-        :param epoch_threshold: d
-        :param verbose: e
-        :return: f
+        :param init_weights: An array of weights to replace randomly chosen initial weights
+        :param l_rate: Learning rate to be set
+        :param batch_size: Batch size for training
+        :param epoch_threshold: Maximum number of epochs to run
+        :param verbose: A boolean flag to keep the printed output verbose
+        :return: A tuple of final weights and epochs run
         """
 
         epoch = 0
