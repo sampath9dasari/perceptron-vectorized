@@ -58,8 +58,7 @@ class Perceptron:
 
         train_d = np.concatenate([train, np.ones(len(train)).reshape(len(train), 1)], axis=1)
 
-        train_batches = make_batches(train_d, batch_size, 0)
-        label_batches = make_batches(labels, batch_size, 0)
+        train_batches, label_batches = make_batches(batch_size, 0)
 
         print("Number of batches formed: ", len(train_batches))
         print()
