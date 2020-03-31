@@ -2,8 +2,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
-def plot_hyperplane(train_data,labels,weights):
-    train_plot = train_data[:,0:3].T
+def plot_hyperplane(data,labels,weights):
+    """
+
+    :param data: An array of data the perceptron is trained on
+    :param labels: An array of labels for the data provided
+    :param weights: An array of weights that are trained on data
+    :return: None
+    """
+
+    train_plot = data[:,0:3].T
     X, Y = np.meshgrid(np.linspace(-5, 5, 200), np.linspace(-5, 5, 200))
     Z = (-weights[0] * X - weights[1] * Y - weights[3]) * 1. /weights[2]
     with plt.style.context('default') :
